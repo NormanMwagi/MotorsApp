@@ -1,0 +1,63 @@
+﻿<Window x:Class="MotorsApp.DriverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorsApp"
+        mc:Ignorable="d"
+        Title="DriverWindow" Height="641" Width="1041">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Label -->
+        <Label x:Name="header" Content="Drivers" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,10,0,10"/>
+
+        <!-- Form Grid -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Club Name Label and TextBox -->
+            <Label Content="Driver Name" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="driverTxt" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Margin="5"/>
+
+            <!-- City Label and TextBox -->
+            <Label Content="License No" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="licenseTxt" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Margin="5"/>
+
+
+            <!-- Add Button -->
+            <Button x:Name="btnAdd" Grid.Row="3" Content="Add+" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="426,0,0,0" Click="btnAdd_Click_1"/>
+        </Grid>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="driverDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="20,194,20,20" CanUserAddRows="False" IsReadOnly="False">
+            <DataGrid.Columns>
+                <!-- Define other columns based on the structure of your DataTable -->
+                <DataGridTextColumn Header="Driver Name" Binding="{Binding driver_name}" />
+                <DataGridTextColumn Header="License" Binding="{Binding license_number}" />
+
+                <!-- Edit and Delete button column -->
+                <DataGridTemplateColumn Header="Actions" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Edit" Click="Edit_Click"/>
+                                <Button Content="Delete" Click="Delete_Click" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
